@@ -42,9 +42,11 @@ class Api {
 
   Future<List<JournalEntry>> getJournalEntries() async {
     final response = await get("entries/");
-    return response['results']
-        .forEach((entry) => JournalEntry.fromJson(entry))
-        .toList();
+    return response['results'].map<JournalEntry>((entry) {
+      print(entry);
+      return JournalEntry.fromMap(entry);
+    }).toList();
+    // <String>['dfdsf'].map((element) => element.isEmpty).toList()
   }
 
   Future<List<String>> getTags() async {

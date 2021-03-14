@@ -50,22 +50,27 @@ class EntriesProvider with ChangeNotifier {
     if (!initilised) {
       _api = Api();
       _journalEntriesbyTag = {};
-      _tags = await _api.getTags();
+      _tags = ['All'];
+      // await _api.getTags();
+      print("Before API CAll");
       List<JournalEntry> journalEntries = await _api.getJournalEntries();
+      print("After API Call");
       _journalEntriesAll = [];
       _journalEntriesAll.addAll(journalEntries);
 
       Mood.values.forEach((mood) {
         _journalEntriesbyByMood[mood] = [];
       });
-
+      print("after moods");
       _journalEntriesAll.forEach((entry) {
         final minimilesedDate = Utilities.minimalDate(entry.date);
         if (_journalEntriesbyDate[minimilesedDate] == null)
           _journalEntriesbyDate[minimilesedDate] = [];
         _journalEntriesbyDate[minimilesedDate].add(entry);
-
+        print("Inside all 1");
+        print(entry.mood);
         _journalEntriesbyByMood[entry.mood].add(entry);
+        print("Inside all 2");
 
         if (entry.latitude != null &&
             entry.longitude != null &&
@@ -74,7 +79,7 @@ class EntriesProvider with ChangeNotifier {
         if (entry.medias.length != 0 && entry.medias.first.compareTo("") != 0)
           _journalEntriesHaveMedia.add(entry);
       });
-
+      print("After all");
       initMoodPercentages();
 
       _tags.forEach((tag) {

@@ -1,6 +1,7 @@
 enum Mood { crying, sad, neutral, happy, grin }
 
 Mood fromEmoji(String emoji) {
+  print(emoji);
   switch (emoji) {
     case '😢':
       return Mood.crying;
@@ -14,6 +15,22 @@ Mood fromEmoji(String emoji) {
       return Mood.grin;
     default:
       return null;
+  }
+}
+
+fromEmojiInt(int emoji) {
+  switch (emoji) {
+    case 0:
+      return Mood.crying;
+    case 1:
+      return Mood.sad;
+    case 2:
+      return Mood.neutral;
+    case 3:
+      return Mood.happy;
+    case 4:
+      return Mood.grin;
+      
   }
 }
 

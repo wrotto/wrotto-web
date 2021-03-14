@@ -29,11 +29,13 @@ class EntryCard extends StatelessWidget {
                 SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 10,
-                    child: Image.network(
-                      journalEntry.medias.first,
-                      alignment: FractionalOffset.center,
-                      fit: BoxFit.cover,
-                    )),
+                    child: !journalEntry.medias.first.contains("null")
+                        ? Image.network(
+                            journalEntry.medias.first,
+                            alignment: FractionalOffset.center,
+                            fit: BoxFit.cover,
+                          )
+                        : Container()),
               Row(children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),

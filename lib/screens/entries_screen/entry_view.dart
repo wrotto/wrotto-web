@@ -46,19 +46,23 @@ class EntryView extends StatelessWidget {
                   showDialog(
                       context: context,
                       builder: (context) => Dialog(
-                            child: Image.network(
-                              journalEntry.medias.first,
-                            ),
+                            child: !journalEntry.medias.first.contains("null")
+                                ? Image.network(
+                                    journalEntry.medias.first,
+                                  )
+                                : Container(),
                           ));
                 },
                 child: SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 6,
-                    child: Image.network(
-                      journalEntry.medias.first,
-                      alignment: FractionalOffset.center,
-                      fit: BoxFit.cover,
-                    )),
+                    child: !journalEntry.medias.first.contains("null")
+                        ? Image.network(
+                            journalEntry.medias.first,
+                            alignment: FractionalOffset.center,
+                            fit: BoxFit.cover,
+                          )
+                        : Container()),
               ),
             if (journalEntry.tags != null &&
                 journalEntry.tags.length != 0 &&

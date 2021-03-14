@@ -83,7 +83,7 @@ class JournalEntry {
         title: map['title'],
         text: map['text'],
         date: DateTime.fromMillisecondsSinceEpoch(map['date']),
-        mood: fromEmoji(map['mood']),
+        mood: fromEmojiInt(map['mood']),
         latitude: map['latitude'],
         longitude: map['longitude'],
         locationDisplayName: map['locationDisplayName'],
@@ -97,5 +97,4 @@ class JournalEntry {
 
   factory JournalEntry.fromJson(String source) =>
       JournalEntry.fromMap(json.decode(source));
-
 }
